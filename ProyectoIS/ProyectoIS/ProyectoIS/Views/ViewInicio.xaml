@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.Views.ViewInicio"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ViewModelInicio></local:ViewModelInicio>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <Label Text="Bienvenidos esta es la tabla de Clientes del WS de Cristian Rivera!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <CollectionView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding ClienteSeleccionado}" 
+                        SelectionMode="Single"  
+                        ItemsSource="{Binding ListClientes}"
+                        SelectionChangedCommand="{Binding actualizarFormulario}"
+                        >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="10">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding id_cliente}"  Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding nombre}" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding apellido}"  Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding ciudad}"  Grid.Row="0" Grid.Column="3"/>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.MainPage"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:ViewModelMainPage></local:ViewModelMainPage>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Inicio de Sesion" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label Text="Usuario"></Label>
+        <Entry Text="{Binding Usuario}" Keyboard="Text"></Entry>
+
+        <Label Text="Contraseña"></Label>
+        <Entry Text="{Binding Pass}" Keyboard="Text" IsPassword="True"></Entry>
+
+        <Button Command="{Binding inicioSesion}" Text="Entrar" CornerRadius="20" ></Button>
+        
+        <Label Text="{Binding Resultado}"></Label>
+    </StackLayout>
+
+</ContentPage>
