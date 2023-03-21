@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.Views.ViewRegistrese"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ViewModelRegistrese></local:ViewModelRegistrese>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="SteelBlue">
+            <Image Source="https://cdn-icons-png.flaticon.com/512/4257/4257824.png " Margin="15" WidthRequest="150"></Image>
+            <Label Text="Vista de Registrese" 
+                  VerticalOptions="Center" 
+                HorizontalOptions="Center" TextColor="DarkSlateBlue" FontSize="20"/>
+            <StackLayout Margin="20" Padding="20">
+                <Label Text="Nombre Empleado" TextColor="white" FontSize="16"></Label>
+                <Entry Text="{Binding Nombre}" Keyboard="Text"></Entry>
+                <Label Text="Apellido Empleado" TextColor="White"  FontSize="16"></Label>
+                <Entry Text="{Binding Apellido}" Keyboard="Text"></Entry>
+                <Label Text="Id Sucursal" TextColor="white"  FontSize="16"></Label>
+                <Entry Text="{Binding Sucursal}" Keyboard="Text"></Entry>
+                <Label Text="User" TextColor="White"  FontSize="16"></Label>
+                <Entry Text="{Binding User}" Keyboard="Text" ></Entry>
+                <Label Text="Pass" TextColor="White"  FontSize="16"></Label>
+                <Entry Text="{Binding Pass}" Keyboard="Text" ></Entry>
+
+
+                <Button Command="{Binding registroUsuario}" BackgroundColor="White" Text="Registrarse" VerticalOptions="Center" TextColor="DarkSlateBlue"></Button>
+            </StackLayout>
+            <CollectionView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding EmpleadoSeleccionado}" 
+                        SelectionMode="Single"  
+                        ItemsSource="{Binding ListEmpleados}"
+                        SelectionChangedCommand="{Binding actualizarFormulario}"
+                        >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="10">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding nempleado}"  Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding aempleado}" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding idsucursal}"  Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding euser}"  Grid.Row="0" Grid.Column="3"/>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

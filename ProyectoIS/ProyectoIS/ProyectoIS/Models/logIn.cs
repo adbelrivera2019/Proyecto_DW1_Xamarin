@@ -7,5 +7,6 @@ namespace ProyectoIS.Models
     public class logIn
     {
         public int is_valid {set; get; }
+        public int rol { set; get; }
     }
 }

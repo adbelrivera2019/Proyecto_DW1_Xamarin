@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.Views.ViewSucursal"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ViewModelSucursal></local:ViewModelSucursal>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Image Source="https://cdn-icons-png.flaticon.com/512/4257/4257824.png " Margin="15" WidthRequest="150"></Image>
+                <Label Text="Vista de Crear Forma de Pago" 
+                  VerticalOptions="Center" 
+                HorizontalOptions="Center" TextColor="white" FontSize="20"/>
+                <StackLayout Margin="20" Padding="10">
+                    <Label Text="Id Sucursal" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding Id_sucursal}" Keyboard="Text"></Entry>
+                    <Label Text="Ciudad" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding Ciudad}" Keyboard="Text"></Entry>
+                    <Label Text="Departamento" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding Departamento}" Keyboard="Text"></Entry>
+                    <Label Text="Telefono" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding Telefono}" Keyboard="Text"></Entry>
+                </StackLayout>
+                <StackLayout Margin="10" Padding="20">
+                    <Button Command="{Binding registroSucursal}" BackgroundColor="White" Text="Crear Sucursal" VerticalOptions="Center" TextColor="DarkSlateBlue"></Button>
+                    <Button Command="{Binding actualizarSucursal}" BackgroundColor="DarkSlateBlue" Text="Editar Sucursal" VerticalOptions="Center" TextColor="White"></Button>
+                    <Button Command="{Binding eliminarSucursal}" BackgroundColor="White" Text="Eliminar Sucursal" VerticalOptions="Center" TextColor="DarkSlateBlue"></Button>
+                </StackLayout>
+                <CollectionView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding SucursalSeleccionado}" 
+                        SelectionMode="Single"  
+                        ItemsSource="{Binding ListSucursal}"
+                        SelectionChangedCommand="{Binding actualizarFormulario}"
+                        >
+
+                    <CollectionView.ItemTemplate >
+                        <DataTemplate  >
+
+                            <Grid HeightRequest="10" Margin="10" Padding="1">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="{Binding id_sucursal}"  Grid.Row="0" Grid.Column="0" />
+                                <Label Text="{Binding ciudad}" Grid.Row="0" Grid.Column="1"/>
+                                <Label Text="{Binding departamento}"  Grid.Row="0" Grid.Column="2" />
+                                <Label Text="{Binding telefono}" Grid.Row="0" Grid.Column="3"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

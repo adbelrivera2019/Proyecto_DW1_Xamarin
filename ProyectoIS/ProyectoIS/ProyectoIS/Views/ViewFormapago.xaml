@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.Views.ViewFormapago"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+    <ContentPage.BindingContext>
+        <local:ViewModelFormapago></local:ViewModelFormapago>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Image Source="https://cdn-icons-png.flaticon.com/512/4257/4257824.png " Margin="15" WidthRequest="150"></Image>
+            <Label Text="Vista de Crear Forma de Pago" 
+                  VerticalOptions="Center" 
+                HorizontalOptions="Center" TextColor="white" FontSize="20"/>
+            <StackLayout Margin="20" Padding="10">
+                <Label Text="Id de Forma de Pago" TextColor="White"  FontSize="16"></Label>
+                <Entry Text="{Binding Id_formapago}" Keyboard="Text"></Entry>
+            <Label Text="Descripcion de Forma de Pago" TextColor="White"  FontSize="16"></Label>
+                <Entry Text="{Binding Descripcion}" Keyboard="Text"></Entry>
+            </StackLayout>
+            <StackLayout Margin="10" Padding="20">
+                <Button Command="{Binding registroFormapago}" BackgroundColor="White" Text="Crear Forma de Pago" VerticalOptions="Center" TextColor="DarkSlateBlue"></Button>
+                <Button Command="{Binding actualizarFormapago}" BackgroundColor="DarkSlateBlue" Text="Editar Forma de Pago" VerticalOptions="Center" TextColor="White"></Button>
+                <Button Command="{Binding eliminarFormapago}" BackgroundColor="White" Text="Eliminar Forma de Pago" VerticalOptions="Center" TextColor="DarkSlateBlue"></Button>
+            </StackLayout>
+            <CollectionView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" 
+                        SelectedItem="{Binding FormapagoSeleccionado}" 
+                        SelectionMode="Single"  
+                        ItemsSource="{Binding ListFormapago}"
+                        SelectionChangedCommand="{Binding actualizarFormulario}"
+                        >
+                
+                <CollectionView.ItemTemplate >
+                    <DataTemplate  >
+
+                        <Grid HeightRequest="10" Margin="10" Padding="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                                <ColumnDefinition Width="*" ></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding id_formapago}"  Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding descripcion}" Grid.Row="0" Grid.Column="1"/>
+
+                        </Grid>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

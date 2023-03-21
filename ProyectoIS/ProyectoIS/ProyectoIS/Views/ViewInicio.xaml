@@ -7,45 +7,60 @@
         <local:ViewModelInicio></local:ViewModelInicio>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        
-        <StackLayout>
-            <Label Text="Bienvenidos esta es la tabla de Clientes del WS de Cristian Rivera!"
+        <ScrollView>
+            <StackLayout BackgroundColor="CornflowerBlue">
+                <Image Source="https://cdn-icons-png.flaticon.com/512/4257/4257824.png " Margin="10" WidthRequest="100"></Image>
+                <Label Text="Formulario Creación de Ventas"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="20"/>
+                <StackLayout Margin="20" Padding="20">
+                    <Label Text="Nombre Cliente" TextColor="white" FontSize="16"></Label>
+                    <Entry Text="{Binding ncliente}" Keyboard="Text"></Entry>
+                    <Label Text="Apellido Cliente" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding acliente}" Keyboard="Text"></Entry>
+                    <Label Text="Ciudad Cliente" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding ccliente}" Keyboard="Text" ></Entry>
+                </StackLayout>
+                <StackLayout Margin="20" Padding="20">
+                    <Label Text="Producto" TextColor="White"  FontSize="16"></Label>
+                    <Entry Text="{Binding getProducto()}" Keyboard="Text" ></Entry>
+                    <Label Text="Cantidad" TextColor="white"  FontSize="16"></Label>
+                    <Entry Text="{Binding cantidad}" Keyboard="Text"></Entry>
 
+                    <Button BackgroundColor="White" Text="Agregar Venta" VerticalOptions="Center" TextColor="DarkSlateBlue" ></Button>
+                    <Button BackgroundColor="DarkSlateBlue" Text="Ver Pedidos" VerticalOptions="Center" TextColor="White" ></Button>
+                </StackLayout>
             <CollectionView Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" 
-                        SelectedItem="{Binding ClienteSeleccionado}" 
+                        SelectedItem="{Binding ProductoSeleccionado}" 
                         SelectionMode="Single"  
-                        ItemsSource="{Binding ListClientes}"
+                        ItemsSource="{Binding ListProducto}"
                         SelectionChangedCommand="{Binding actualizarFormulario}"
                         >
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
 
-                        <Grid Padding="10">
+                        <CollectionView.ItemTemplate >
+                            <DataTemplate  >
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
+                                <Grid HeightRequest="10" Margin="10" Padding="1">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" ></ColumnDefinition>
-                                <ColumnDefinition Width="*" ></ColumnDefinition>
-                                <ColumnDefinition Width="*" ></ColumnDefinition>
-                                <ColumnDefinition Width="*" ></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
 
-                            <Label Text="{Binding id_cliente}"  Grid.Row="0" Grid.Column="0" />
-                            <Label Text="{Binding nombre}" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="{Binding apellido}"  Grid.Row="0" Grid.Column="2"/>
-                            <Label Text="{Binding ciudad}"  Grid.Row="0" Grid.Column="3"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
 
-                        </Grid>
+                                    <Label Text="{Binding id_producto}"  Grid.Row="0" Grid.Column="0" />
+                                    <Label Text="{Binding nombre}" Grid.Row="0" Grid.Column="1"/>
+                                    <Label Text="{Binding precio}"  Grid.Row="0" Grid.Column="2" />
+                                </Grid>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-        
-    </ContentPage.Content>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
 </ContentPage>

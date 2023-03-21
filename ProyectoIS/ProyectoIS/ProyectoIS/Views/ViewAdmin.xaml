@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoIS.Views.ViewAdmin"
+             xmlns:local="clr-namespace:ProyectoIS.ViewModels">
+
+    <ContentPage.BindingContext>
+        <local:ViewModelAdmin></local:ViewModelAdmin>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White">
+            <Image Source="https://cdn-icons-png.flaticon.com/512/4257/4257824.png " Margin="15" WidthRequest="150"></Image>
+          <Label Text="Vista de Administrador" 
+                  VerticalOptions="Center" 
+                HorizontalOptions="Center" TextColor="DarkSlateBlue" FontSize="20"/>
+            <StackLayout Margin="10" Padding="20">
+                <Button Command="{Binding navegarformapago}" BackgroundColor="DodgerBlue" Text="Administrar Forma de Pago" VerticalOptions="Center" TextColor="white" CornerRadius="20"></Button>
+                <Button Command="{Binding navegarestadopago}" BackgroundColor="DarkSlateBlue" Text="Administrar Estado de Pago" VerticalOptions="Center" TextColor="white" CornerRadius="20"></Button>
+                <Button Command="{Binding navegarsucursal}" BackgroundColor="DodgerBlue" Text="Administrar Sucursales" VerticalOptions="Center" TextColor="white" CornerRadius="20"></Button>
+                <Button Command="{Binding navegarproducto}" BackgroundColor="DarkSlateBlue" Text="Administrar Productos" VerticalOptions="Center" TextColor="white" CornerRadius="20"></Button>
+            </StackLayout>
+        </StackLayout>
+        
+  </ContentPage.Content>
+</ContentPage>

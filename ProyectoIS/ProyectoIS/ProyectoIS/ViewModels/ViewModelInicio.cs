@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using ProyectoIS.Models;
+using Xamarin.Forms;
 
 namespace ProyectoIS.ViewModels
 {
@@ -16,7 +17,7 @@ namespace ProyectoIS.ViewModels
             public ViewModelInicio()
             {
                 getClientes();
-
+            getProducto();
             }
 
             private async void getClientes()
@@ -50,8 +51,58 @@ namespace ProyectoIS.ViewModels
                 }
             }
 
+        private async void getProducto()
+        {
 
-            string url = "https://desfrlopez.me/crivera/api/cliente";
+            ListProducto = new ObservableCollection<Producto>();
+
+            HttpClient httpClient = new HttpClient();
+
+            var respuesta = await httpClient.GetAsync(urlprod);
+
+            if (respuesta.IsSuccessStatusCode)
+            {
+
+                var contenido = await respuesta.Content.ReadAsStringAsync();
+                JsonSerializerOptions opciones = new JsonSerializerOptions()
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var listado = System.Text.Json.JsonSerializer.Deserialize<List<Producto>>(contenido, opciones);
+
+
+                foreach (var item in listado)
+                {
+
+                    ListProducto.Add(item);
+
+
+                }
+
+            }
+        }
+        INavigation navigation;
+
+        string urlprod = "https://desfrlopez.me/crivera/api/producto/";
+        ObservableCollection<Producto> listProducto = new ObservableCollection<Producto>();
+
+        public ObservableCollection<Producto> ListProducto
+        {
+            get => listProducto;
+            set
+            {
+
+                listProducto = value;
+                var args = new PropertyChangedEventArgs(nameof(ListProducto));
+                PropertyChanged?.Invoke(this, args);
+
+            }
+
+
+        }
+
+
+        string url = "https://desfrlopez.me/crivera/api/pedido";
 
             ObservableCollection<Cliente> listClientes = new ObservableCollection<Cliente>();
 

@@ -15,7 +15,10 @@ namespace ProyectoIS.ViewModels
     {
         public ViewModelMainPage()
         {
-
+            registrese = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ViewRegistrese());
+            });
             inicioSesion = new Command(async () =>
             {
 
@@ -35,10 +38,16 @@ namespace ProyectoIS.ViewModels
                     var inicioSesion = System.Text.Json.JsonSerializer.Deserialize<List<logIn>>(contenido);
 
 
-                    if (inicioSesion[0].is_valid == 1)
+                    if (inicioSesion[0].is_valid == 1 && inicioSesion[0].rol == 2)
                     {
 
                         await Application.Current.MainPage.Navigation.PushAsync(new ViewInicio());
+                        
+                    }
+                    if (inicioSesion[0].is_valid == 1 && inicioSesion[0].rol == 1)
+                    {
+
+                        await Application.Current.MainPage.Navigation.PushAsync(new ViewAdmin());
 
                     }
                     else
@@ -52,6 +61,8 @@ namespace ProyectoIS.ViewModels
             });
 
         }
+
+
             INavigation navigation;
 
             string url = "https://desfrlopez.me/crivera/api/login";
@@ -96,6 +107,7 @@ namespace ProyectoIS.ViewModels
         }
 
         public Command inicioSesion { get; }
+        public Command registrese { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
